@@ -1,0 +1,85 @@
+.card {
+  padding: 16px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  margin: 8px;
+  transition: background-size 1s;
+
+  &:hover {
+    background-size: 110%;
+  }
+
+  @media screen and (min-width: 932px) {
+    width: calc(450px - 32px);
+    height: calc(318px - 32px);
+  }
+
+  .card__containerHead {
+    display: flex;
+  }
+
+  .card__name {
+    font-size: 40px;
+    color: #8c65bd;
+    font-weight: 700;
+    line-height: 48px;
+    margin: 6px 0 0;
+  }
+
+  .card__gender {
+    color: white;
+    font-size: 14px;
+  }
+
+  .card__containerSpecie {
+    display: flex;
+    align-items: center;
+  }
+
+  .card__specie {
+    color: white;
+    text-shadow: 0px 0px 2px rgba(140, 101, 189, 0.1);
+    font-size: 18px;
+  }
+
+  .card__containerName {
+    flex: 1;
+  }
+
+  .card__iconStatus {
+    height: 8px;
+    width: 8px;
+    border-radius: 50px;
+    display: inline-flex;
+    margin-right: 6px;
+  }
+
+  .card__iconStatus--alive {
+    background-color: green;
+  }
+
+  .card__iconStatus--dead {
+    background-color: red;
+  }
+
+  .card__iconStatus--unknown {
+    background-color: gray;
+  }
+
+  .card__firstFiveApparences {
+    color: #8c65bd;
+    font-size: 18px;
+    margin: 40px 0 10px 0;
+    text-shadow: 2px 2px 10px rgba(140, 101, 189, 0.1);
+  }
+
+  .card__episode {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 6px;
+    text-shadow: 0px 0px 2px rgba(140, 101, 189, 0.1);
+  }
+}

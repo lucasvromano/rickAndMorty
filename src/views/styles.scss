@@ -1,0 +1,16 @@
+.characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (min-width: 1398px) {
+    justify-content: start;
+  }
+
+  .characters__cards {
+    width: 100%;
+    @media screen and (min-width: 932px) {
+      width: auto;
+    }
+  }
+}
