@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchEpisodes } from '../../services/apis';
+import { fetchEpisodes, fetchEpisodesById } from '../../services/apis';
 import { updateEpisodes } from '../../store/reducers/reducer';
 import { RootState } from '../../utils/store';
 import './styles.scss';
 
 interface Character {
+  id: number,
   name: string;
   gender: string;
   status: string;
   specie: string;
   image: string;
-  episodes: string[];
+  episodes: any[];
 }
 
 interface Episode {
-  id: number,
   name: string,
   air_date: string,
   url: string[]
@@ -23,8 +23,9 @@ interface Episode {
 
 const Card: React.FC<Character> = ({ name, gender, status, specie, image, episodes }): JSX.Element => {
 
-  const dispatch = useDispatch();
-  const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
+  // const dispatch = useDispatch();
+  // const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
+  // const [episodesList, setEpisodesList] = useState<any[]>([]);
 
   const imageCharacter = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -36,6 +37,11 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
     if (status.toLocaleLowerCase() === 'unknown') return 'card__iconStatus--unknown';
     if (status.toLocaleLowerCase() === 'dead') return 'card__iconStatus--dead';
   }
+
+
+  useEffect(() => {
+    console.log('teste')
+  });
 
   return (
     <div className="card" style={imageCharacter}>
@@ -62,22 +68,31 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
       </h3>
 
 
+
+
+      {/* {
+        console.log(episodesList)
+        // episodesList?.map(index => {
+        //   console.log(index)
+        //   return (
+        //     <p className="card__episode" key={index?.id}>{index?.name}</p>
+        //   )
+        // })
+      } */}
+
+
       {
         episodes?.map(index => {
-
-          // const episode = await fetchEpisodes(index);
-
           return (
-            <p className="card__episode" key={index}>{index}</p>
+            <p className="card__episode" key={index?.name} >{index?.name}</p>
           )
         })
       }
 
-
-
-
     </div>
   );
+
+
 };
 
 export default Card;

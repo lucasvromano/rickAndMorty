@@ -1,3 +1,4 @@
+import { AppThunk, AppDispatch } from './../../utils/store';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Character {
@@ -48,12 +49,19 @@ const rickAndMorty = createSlice({
     },
 
     updateEpisodes(state, action: PayloadAction<any>) {
-      // console.log(action.payload);
-      // state.episodes = action.payload;
       state.episodes.push(action.payload);
     }
   }
 });
+
+export const sleep = (ms: number) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export const addEpisodes = async (episodes: any, dispatch: AppDispatch) => {
+  await sleep(3000);
+  dispatch(updateCharacters(episodes))
+}
 
 export const { updateCharacters, updateEpisodes } = rickAndMorty.actions;
 export default rickAndMorty.reducer;

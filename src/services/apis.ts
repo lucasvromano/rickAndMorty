@@ -17,7 +17,7 @@ export const fetchEpisodes = async (episode: string) => {
   return data;
 }
 
-export const fetchEpisodesById = async (id: string) => {
+export const fetchEpisodesById = async (id: number) => {
   const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
   const data: Episode = await response.json();
   return data;
