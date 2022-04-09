@@ -28,15 +28,18 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
 
+  const [episodesList, setEpisodesList] = useState<any[]>([]);
+  const [episodesList2, setEpisodesList2] = useState<any[]>([]);
+
   useEffect(() => {
 
     const getCharacters = async () => {
       const characters = await fetchCharacters();
       dispatch(updateCharacters(characters));
-      // characters.map((index: any) => {
-      //   // console.log(index.episode.slice(0, 5));
-      //   getEpisodes(index.episode.slice(0, 5));
-      // })
+      // setEpisodesList([...episodesList, characters]);
+      characters.map((index: any) => {
+        getEpisodes(index.episode.slice(0, 5));
+      })
     }
 
     getCharacters();
@@ -46,23 +49,26 @@ const App: React.FC = () => {
 
   const getEpisodes = (episode: any[]) => {
     const array: any[] = [];
+
     episode.map(async index => {
       const ep = await fetchEpisodes(index);
       array.push(ep);
+      console.log(ep);
     });
+
     return array;
   }
+
 
   return (
     <>
       <div className="characters">
 
-        
-
         {
           rickAndMorty?.characters.map(index => {
 
-            const teste = getEpisodes(index.episode.slice(0, 5));
+            // const teste = getEpisodes(index.episode.slice(0, 5));
+            // const teste2 = getEpisodesNew(index.episode.slice(0, 5));
 
             return (
               <div key={index.id} className="characters__cards">
@@ -73,8 +79,8 @@ const App: React.FC = () => {
                   status={index.status}
                   specie={index.species}
                   image={index.image}
-                  // episodes={index.episode.slice(0, 5)}
-                  episodes={teste}
+                  episodes={index.episode.slice(0, 5)}
+                // episodes={teste}
                 />
               </div>
             )

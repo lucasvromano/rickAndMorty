@@ -35,13 +35,13 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
   const setStatusCharacterColor = (status: string) => {
     if (status.toLocaleLowerCase() === 'alive') return 'card__iconStatus--alive';
     if (status.toLocaleLowerCase() === 'unknown') return 'card__iconStatus--unknown';
-    if (status.toLocaleLowerCase() === 'dead') return 'card__iconStatus--dead';
+    return 'card__iconStatus--dead';
   }
 
 
-  useEffect(() => {
-    console.log('teste')
-  });
+  // useEffect(() => {
+  //   console.log(episodes);
+  // });
 
   return (
     <div className="card" style={imageCharacter}>
