@@ -28,10 +28,6 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
 
-  const [episodesList, setEpisodesList] = useState<any[]>([]);
-  const [episodesList2, setEpisodesList2] = useState<any[]>([]);
-  // const [url, setUrl] = useState<any[]>([]);
-
   useEffect(() => {
 
     const getCharacters = async () => {
@@ -47,58 +43,30 @@ const App: React.FC = () => {
 
   const getEpisodes = (characters: any[]) => {
 
-    const array: string[] = [""];
+    const episodesList: string[] = [""];
 
     characters.map(character => {
-      const top5 = character.episode.slice(0, 5);
-      top5.map(async (episode: string) => {
+      const firstFiveAppearances = character.episode.slice(0, 5);
 
-        if (!array.includes(episode)) {
-          // const characters = await fetchEpisodes(episode);
-          // dispatch(updateEpisodes(episode));
-          // console.log(episode);
-          // console.log(characters);
-          array.push(episode);
-        }
-
+      firstFiveAppearances.map(async (episode: string) => {
+        !episodesList.includes(episode) && episodesList.push(episode) 
       });
-
     });
 
-    // setUrl(array);
-    console.log(array);
+    console.log(episodesList);
 
-    array.map(async index => {
+    episodesList.map(async index => {
       const characters = await fetchEpisodes(index);
       dispatch(updateEpisodes(characters));
     });
 
-
-    // const array: any[] = [];
-
-    // episode.map(async index => {
-    //   const ep = await fetchEpisodes(index);
-    //   array.push(ep);
-    // });
-
-    // return array;
   }
-
 
   return (
     <>
       <div className="characters">
-
         {
           rickAndMorty?.characters.map(index => {
-
-
-
-            console.log(rickAndMorty?.episodes);
-
-            // const teste = getEpisodes(index.episode.slice(0, 5));
-            // const teste2 = getEpisodesNew(index.episode.slice(0, 5));
-
             return (
               <div key={index.id} className="characters__cards">
                 <Card
@@ -113,10 +81,8 @@ const App: React.FC = () => {
                 />
               </div>
             )
-
           })
         }
-
       </div>
     </>
   );

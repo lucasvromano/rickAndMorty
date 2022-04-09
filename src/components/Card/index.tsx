@@ -24,7 +24,7 @@ interface Episode {
 const Card: React.FC<Character> = ({ name, gender, status, specie, image, episodes }): JSX.Element => {
 
   // const dispatch = useDispatch();
-  // const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
+  const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
   // const [episodesList, setEpisodesList] = useState<any[]>([]);
 
   const imageCharacter = {
@@ -38,9 +38,8 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
     return 'card__iconStatus--dead';
   }
 
-
   // useEffect(() => {
-  //   console.log(episodes);
+  //   console.log(rickAndMorty?.episodes);
   // });
 
   return (
@@ -67,26 +66,13 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
         First 5: appearances:
       </h3>
 
-
-
-
-      {/* {
-        console.log(episodesList)
-        // episodesList?.map(index => {
-        //   console.log(index)
-        //   return (
-        //     <p className="card__episode" key={index?.id}>{index?.name}</p>
-        //   )
-        // })
-      } */}
-
-
       {
-        episodes?.map(index => {
-          return (
-            <p className="card__episode" key={index?.name} >{index?.name}</p>
+        rickAndMorty?.episodes.map(currentEpisode => (
+          episodes.includes(currentEpisode.url) &&
+          (
+            <p className="card__episode" key={currentEpisode.id}>{currentEpisode.name}</p>
           )
-        })
+        ))
       }
 
     </div>
