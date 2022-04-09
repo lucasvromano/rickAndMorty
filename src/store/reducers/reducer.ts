@@ -54,14 +54,5 @@ const rickAndMorty = createSlice({
   }
 });
 
-export const sleep = (ms: number) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-export const addEpisodes = async (episodes: any, dispatch: AppDispatch) => {
-  await sleep(3000);
-  dispatch(updateCharacters(episodes))
-}
-
 export const { updateCharacters, updateEpisodes } = rickAndMorty.actions;
 export default rickAndMorty.reducer;

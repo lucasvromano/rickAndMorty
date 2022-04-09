@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../utils/store";
-import { addEpisodes, updateCharacters, updateEpisodes } from "../store/reducers/reducer";
+import { updateCharacters, updateEpisodes } from "../store/reducers/reducer";
 import { fetchCharacters, fetchEpisodes } from "../services/apis";
 import Card from "../components/Card";
 
@@ -30,16 +30,14 @@ const App: React.FC = () => {
 
   const [episodesList, setEpisodesList] = useState<any[]>([]);
   const [episodesList2, setEpisodesList2] = useState<any[]>([]);
+  // const [url, setUrl] = useState<any[]>([]);
 
   useEffect(() => {
 
     const getCharacters = async () => {
       const characters = await fetchCharacters();
       dispatch(updateCharacters(characters));
-      // setEpisodesList([...episodesList, characters]);
-      characters.map((index: any) => {
-        getEpisodes(index.episode.slice(0, 5));
-      })
+      getEpisodes(characters);
     }
 
     getCharacters();
@@ -47,16 +45,43 @@ const App: React.FC = () => {
   }, [dispatch]);
 
 
-  const getEpisodes = (episode: any[]) => {
-    const array: any[] = [];
+  const getEpisodes = (characters: any[]) => {
 
-    episode.map(async index => {
-      const ep = await fetchEpisodes(index);
-      array.push(ep);
-      console.log(ep);
+    const array: string[] = [""];
+
+    characters.map(character => {
+      const top5 = character.episode.slice(0, 5);
+      top5.map(async (episode: string) => {
+
+        if (!array.includes(episode)) {
+          // const characters = await fetchEpisodes(episode);
+          // dispatch(updateEpisodes(episode));
+          // console.log(episode);
+          // console.log(characters);
+          array.push(episode);
+        }
+
+      });
+
     });
 
-    return array;
+    // setUrl(array);
+    console.log(array);
+
+    array.map(async index => {
+      const characters = await fetchEpisodes(index);
+      dispatch(updateEpisodes(characters));
+    });
+
+
+    // const array: any[] = [];
+
+    // episode.map(async index => {
+    //   const ep = await fetchEpisodes(index);
+    //   array.push(ep);
+    // });
+
+    // return array;
   }
 
 
@@ -66,6 +91,10 @@ const App: React.FC = () => {
 
         {
           rickAndMorty?.characters.map(index => {
+
+
+
+            console.log(rickAndMorty?.episodes);
 
             // const teste = getEpisodes(index.episode.slice(0, 5));
             // const teste2 = getEpisodesNew(index.episode.slice(0, 5));
