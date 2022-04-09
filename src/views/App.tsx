@@ -21,20 +21,20 @@ const App: React.FC = () => {
 
     const getEpisodes = (characters: any[]) => {
       const episodesList: string[] = [""];
-  
+
       characters.forEach(character => {
         const firstFiveAppearances = character.episode.slice(0, 5);
-  
+
         firstFiveAppearances.map(async (episode: string) => {
           !episodesList.includes(episode) && episodesList.push(episode)
         });
       });
-  
-      episodesList.map(async index => {
-        const characters = await fetchEpisodes(index);
-        dispatch(updateEpisodes(characters));
+
+      episodesList.map(async (index: string) => {
+        const episode = await fetchEpisodes(index);
+        dispatch(updateEpisodes(episode));
       });
-  
+
     }
 
     getCharacters();
