@@ -1,4 +1,3 @@
-import { AppThunk, AppDispatch } from './../../utils/store';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Character {
@@ -48,7 +47,7 @@ const rickAndMorty = createSlice({
       state.characters = action.payload;
     },
 
-    updateEpisodes(state, action: PayloadAction<any>) {
+    updateEpisodes(state, action: PayloadAction<Episode>) {
       state.episodes.push(action.payload);
     }
   }

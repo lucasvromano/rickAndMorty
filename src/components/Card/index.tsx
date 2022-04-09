@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchEpisodes, fetchEpisodesById } from '../../services/apis';
-import { updateEpisodes } from '../../store/reducers/reducer';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../utils/store';
 import './styles.scss';
-
 interface Character {
   id: number,
   name: string;
@@ -15,17 +12,9 @@ interface Character {
   episodes: any[];
 }
 
-interface Episode {
-  name: string,
-  air_date: string,
-  url: string[]
-}
-
 const Card: React.FC<Character> = ({ name, gender, status, specie, image, episodes }): JSX.Element => {
 
-  // const dispatch = useDispatch();
   const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
-  // const [episodesList, setEpisodesList] = useState<any[]>([]);
 
   const imageCharacter = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -38,9 +27,9 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
     return 'card__iconStatus--dead';
   }
 
-  // useEffect(() => {
-  //   console.log(rickAndMorty?.episodes);
-  // });
+  const formatEpisodeNumber = (episode: number) => {
+    return episode <= 9 ? `0${episode}` : episode;
+  }
 
   return (
     <div className="card" style={imageCharacter}>
@@ -70,19 +59,14 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
         rickAndMorty?.episodes.map(currentEpisode => (
           episodes.includes(currentEpisode.url) &&
           (
-            <p className="card__episode" key={currentEpisode.id}>{currentEpisode.name}</p>
+            <p className="card__episode" key={currentEpisode.id}>
+              Episode {formatEpisodeNumber(currentEpisode.id)}: {currentEpisode.name} ({currentEpisode.air_date})
+            </p>
           )
         ))
       }
-
     </div>
   );
-
-
 };
 
 export default Card;
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
-}
-
