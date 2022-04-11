@@ -1,36 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Character {
-  episode: Array<string>,
-  gender: string,
-  id: number,
-  image: string,
-  name: string,
-  species: string,
-  status: string,
-  url: string
-}
-
-interface Episode {
-  id: number,
-  name: string,
-  air_date: string,
-  url: string
-}
-
 const rickAndMorty = createSlice({
   name: 'rickAndMorty',
   initialState: {
     characters: [
       {
-        episode: [""],
-        gender: "",
         id: 0,
-        image: "",
         name: "",
-        species: "",
+        gender: "",
         status: "",
-        url: ""
+        specie: "",
+        image: "",
+        episode: [""]
       }
     ],
     episodes: [

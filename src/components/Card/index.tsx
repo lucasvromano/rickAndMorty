@@ -2,17 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../utils/store';
 import './styles.scss';
-interface Character {
-  id: number,
-  name: string;
-  gender: string;
-  status: string;
-  specie: string;
-  image: string;
-  episodes: any[];
-}
 
-const Card: React.FC<Character> = ({ name, gender, status, specie, image, episodes }): JSX.Element => {
+const Card: React.FC<Character> = ({ name, gender, status, specie, image, episode }): JSX.Element => {
 
   const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
 
@@ -57,7 +48,7 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
 
       {
         rickAndMorty?.episodes.map(currentEpisode => (
-          episodes.includes(currentEpisode.url) &&
+          episode.includes(currentEpisode.url) &&
           (
             <p className="card__episode" key={currentEpisode.id}>
               Episode {formatEpisodeNumber(currentEpisode.id)}: {currentEpisode.name} ({currentEpisode.air_date})
