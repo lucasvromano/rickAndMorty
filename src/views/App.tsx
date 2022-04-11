@@ -53,7 +53,7 @@ const App: React.FC = () => {
                   name={index.name}
                   gender={index.gender}
                   status={index.status}
-                  specie={index.specie}
+                  species={index.species}
                   image={index.image}
                   episode={index.episode.slice(0, 5)}
                 />

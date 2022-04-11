@@ -3,7 +3,7 @@ interface Character {
   name: string;
   gender: string;
   status: string;
-  specie: string;
+  species: string;
   image: string;
   episode: string[];
 }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../utils/store';
 import './styles.scss';
 
-const Card: React.FC<Character> = ({ name, gender, status, specie, image, episode }): JSX.Element => {
+const Card: React.FC<Character> = ({ name, gender, status, species, image, episode }): JSX.Element => {
 
   const rickAndMorty = useSelector((state: RootState) => state.rickAndMorty);
 
@@ -37,7 +37,7 @@ const Card: React.FC<Character> = ({ name, gender, status, specie, image, episod
         <div>
           <div className="card__containerSpecie">
             <span className={`card__iconStatus card__iconStatus--alive ${setStatusCharacterColor(status)}`}></span>
-            <span className="card__specie">{specie}</span>
+            <span className="card__specie">{species}</span>
           </div>
         </div>
       </div>

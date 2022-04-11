@@ -9,7 +9,7 @@ const rickAndMorty = createSlice({
         name: "",
         gender: "",
         status: "",
-        specie: "",
+        species: "",
         image: "",
         episode: [""]
       }
